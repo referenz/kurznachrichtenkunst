@@ -4,11 +4,18 @@ import { generateResponse } from "./services/gemini.ts";
 import { getFormattedHaikus } from "./services/formatHaikus.ts";
 import { postToMastodon } from "./services/mastodon.ts";
 import { HaikuFeed } from "./types.ts";
+import { postToBluesky } from "./services/bluesky.ts";
 
 async function postHaikus(haikus: string[]) {
   for (const haiku of haikus) {
-    await postToMastodon(haiku); // Dein Post-Aufruf
-    await delay(3000); // Warte 3 Sekunden
+    // Parallel auf Mastodon und Bluesky posten
+    await Promise.all([
+      postToMastodon(haiku),
+      postToBluesky(haiku),
+    ]);
+    
+    // Warte 3 Sekunden
+    await delay(3000);
   }
 }
 
