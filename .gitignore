@@ -1,0 +1,6 @@
+# Beispiel `.gitignore`
+.env
+node_modules/
+*.log
+*.zip
+deno.lock
