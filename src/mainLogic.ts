@@ -9,7 +9,7 @@ import { postToBluesky } from "./services/bluesky.ts";
 async function postHaikus(haikus: string[]) {
   for (const haiku of haikus) {
     // Parallel auf Mastodon und Bluesky posten
-    await Promise.all([
+    await Promise.allSettled([
       postToMastodon(haiku),
       postToBluesky(haiku),
     ]);
