@@ -36,6 +36,9 @@ async function fetchAndFilterFeed(url: string) {
 }
 
 export async function getNews(): Promise<string[]> {
-  const feedContents = await Promise.all(feedUrls.map(fetchAndFilterFeed));
-  return feedContents.filter((content): content is string => content !== null);
+  const feedContents = await Promise.allSettled(feedUrls.map(fetchAndFilterFeed));
+
+  return feedContents
+    .filter((result): result is PromiseFulfilledResult<string> => result.status === "fulfilled")
+    .map((result) => result.value);
 }
