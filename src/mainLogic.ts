@@ -3,7 +3,7 @@ import { getNews } from "./services/feeds.ts";
 import { generateResponse } from "./services/gemini.ts";
 import { getFormattedHaikus } from "./services/formatHaikus.ts";
 import { postToMastodon } from "./services/mastodon.ts";
-import { HaikuFeed } from "./types.ts";
+import type { HaikuFeed } from "./types.ts";
 import { postToBluesky } from "./services/bluesky.ts";
 
 async function postHaikus(haikus: string[]) {

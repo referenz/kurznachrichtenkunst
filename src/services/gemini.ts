@@ -1,13 +1,15 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { getEnvVar } from "../util/env.ts";
-import { HaikuFeed } from "../types.ts";
+import type { HaikuFeed } from "../types.ts";
 
 const instruction = `Du erhältst mehrere JSON-Feeds mit Nachrichten des heutigen Tages.
   Ermittle aus diesen Feeds selbstständig die die Nachrichten mit dem größten Nachrichtenwert für die Allgemeinheit in Deutschland.
   Bitte die Nachrichten der Klatsch- und Gossip-Meldungen nicht so hochpriorisieren. Stattdessen auf Politik und Weltgeschehen fokussieren.
   Erstelle zu diesen drei Nachrichten jeweils drei passende Hashtags und jeweils ein poetisches Haiku.
   Bitte achte darauf, dass auch die inhaltlichen Merkmale eines Haikus berücksichtigt werden und nach Möglichkeit auch die formalen Vorgaben.
-  Versuche, die Themen der Nachrichten mit Naturanspielungen oder anderen typischen Haiku-Elementen zu verknüpfen.
+  Versuche, die Themen der Nachrichten mit Naturanspielungen oder anderen typischen Haiku-Elementen zu verknüpfen. 
+  Wahlerfolge oder das Erstarken extrem rechter, rechtspopulistischer oder populistischer Parteien soll nicht in einen positiven
+  Kontext gesetzt werden.
 
   Antworte ebenfalls in einem JSON-Feed. Dieser soll folgendes Schema haben:
 
