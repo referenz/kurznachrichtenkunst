@@ -14,7 +14,7 @@ function getBlueskyConfig(): BlueskyConfig {
 }
 
 function generateFacetsFromHashtags(text: string) {
-  const hashtagRegex = /#\w+/g; // Regex zum Finden von Hashtags
+  const hashtagRegex = /#[\p{L}\p{N}_]+/gu;
   const encoder = new TextEncoder();
   const facets = [];
   let match;
