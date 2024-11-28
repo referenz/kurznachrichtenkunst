@@ -21,7 +21,10 @@ export async function postToMastodon(message: string) {
       "Authorization": `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ status: message }),
+    body: JSON.stringify({ 
+      status: message,
+      language: 'de',
+     }),
   });
 
   if (!response.ok) {
