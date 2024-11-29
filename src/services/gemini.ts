@@ -1,6 +1,7 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { getEnvVar } from "../util/env.ts";
 import type { HaikuFeed } from "../types.ts";
+import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";
 
 const instruction = `Du erhältst mehrere JSON-Feeds mit Nachrichten des heutigen Tages. 
 Deine Aufgabe ist es, die wichtigsten Nachrichten für die Allgemeinheit in Deutschland zu ermitteln, diese zu priorisieren und im gewünschten Format auszugeben.
@@ -103,8 +104,18 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
 
   let parsedResponse: HaikuFeed;
   try {
-    parsedResponse = JSON.parse(resultText) satisfies HaikuFeed;
-  // deno-lint-ignore no-explicit-any
+    // JSON parsen
+    const jsonData = JSON.parse(resultText);
+
+    // Validierung des geparsten JSON
+    const validationResult = validateHaikuFeed(jsonData);
+    if (!validationResult.success) {
+      throw new Error("Erzeugter Feed ist nicht valide.");
+    }
+
+    // Zuweisung mit garantiertem Typ nach erfolgreicher Validierung
+    parsedResponse = validationResult.data as HaikuFeed;
+    // deno-lint-ignore no-explicit-any
   } catch (err: any) {
     throw new Error(`Failed to parse JSON: ${err.message}`);
   }
