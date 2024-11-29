@@ -23,6 +23,7 @@ export async function executeMainLogic() {
   const news = await getNews();
 
   const response = (await generateResponse(news.join("\n"))) as HaikuFeed;
+  console.log(response);
   const formattedHaikus = getFormattedHaikus(response);
   await postHaikus(formattedHaikus).then(() => console.log("Erfolgreich gepostet."));
 }

@@ -30,7 +30,7 @@ export async function postToMastodon(message: string) {
   if (!response.ok) {
     console.error(`Failed to post toot: ${response.status} - ${response.statusText}`);
     return;
-  } else console.log(`Toot successfully posted: ${message}`);
+  }
 
   //const _data = await response.json();
   //console.log(data);
