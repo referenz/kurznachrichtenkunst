@@ -23,9 +23,9 @@ const instruction = `Du erhältst mehrere JSON-Feeds mit Nachrichten des heutige
           "line3": "string"         // Dritte Zeile des Haikus (5 Silben)
         },
         "hashtags": [               // Passende Hashtags zur Nachricht
-          "string",
-          "string",
-          "string"
+          "#string",
+          "#string",
+          "#string"
         ],
       }
     ]
