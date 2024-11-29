@@ -13,7 +13,7 @@ async function postHaikus(haikus: string[]) {
       postToMastodon(haiku),
       postToBluesky(haiku),
     ]);
-    
+
     // Warte 3 Sekunden
     await delay(3000);
   }
@@ -21,9 +21,19 @@ async function postHaikus(haikus: string[]) {
 
 export async function executeMainLogic() {
   const news = await getNews();
+  if (!news || news.length === 0) {
+    console.error("Keine Nachrichten verfügbar. Abbruch.");
+    return;
+  }
 
-  const response = (await generateResponse(news.join("\n"))) as HaikuFeed;
-  console.log(response);
-  const formattedHaikus = getFormattedHaikus(response);
-  await postHaikus(formattedHaikus).then(() => console.log("Erfolgreich gepostet."));
+  let response: HaikuFeed;
+  try {
+    response = (await generateResponse(news.join("\n"))) as HaikuFeed;
+    console.log("[INFO] Generierte Haikus:", response);
+    const formattedHaikus = getFormattedHaikus(response);
+    await postHaikus(formattedHaikus);
+    console.log("[INFO] Erfolgreich gepostet.");
+  } catch (err: unknown) {
+    console.error("Fehler aufgetreten: ", err);
+  }
 }
