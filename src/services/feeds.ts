@@ -31,7 +31,7 @@ async function fetchAndFilterFeed(url: string) {
     //filteredItems.forEach((item) => console.log(item.title));
     return JSON.stringify(feed); // Du kannst den Feed hier weiterverarbeiten
   } catch (error) {
-    console.error("Fehler beim Abrufen oder Filtern des Feeds:", error);
+    console.error(`Fehler beim Abrufen oder Filtern des Feeds (${url}): `, error);
   }
 }
 

@@ -4,7 +4,7 @@ import type { HaikuFeed } from "../types.ts";
 import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";
 
 export async function generateResponse(prompt: string): Promise<HaikuFeed> {
-  const __dirname = new URL('.', import.meta.url).pathname;
+  const __dirname = new URL(".", import.meta.url).pathname;
   const instruction = await Deno.readTextFile(`${__dirname}/../util/instruction.md`);
 
   const genAI = new GoogleGenerativeAI(getEnvVar("GEMINI_API"));
@@ -24,17 +24,15 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
     .replace(/^```json/, "") // Entfernt den Start-Tag
     .replace(/```$/, ""); // Entfernt den End-Tag
 
-  let parsedResponse: HaikuFeed;
   try {
     const jsonData = JSON.parse(resultText);
+
     const validationResult = validateHaikuFeed(jsonData);
-    if (!validationResult.success) {
-      throw new Error("Erzeugter Feed ist nicht valide.");
-    }
-    parsedResponse = validationResult.data as HaikuFeed;
+    if (!validationResult.success) throw new Error("Erzeugter Feed ist nicht valide.");
+
+    return validationResult.data as HaikuFeed;;
     // deno-lint-ignore no-explicit-any
   } catch (err: any) {
-    throw new Error("Failed to parse JSON." , { cause: err?.message });
+    throw new Error("Failed to parse JSON.", { cause: err?.message });
   }
-  return parsedResponse;
 }

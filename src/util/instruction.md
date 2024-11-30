@@ -1,32 +1,36 @@
-# Haikus zu aktuellen Nachrichten
-Du erhältst mehrere JSON-Feeds mit Nachrichten des heutigen Tages. 
-Deine Aufgabe ist es, die wichtigsten Nachrichten für die Allgemeinheit in Deutschland zu ermitteln, diese zu priorisieren und im gewünschten Format auszugeben.
-Wähle die *drei Nachrichten* mit dem höchsten Nachrichtenwert aus.
+# Aufgabe: Haikus zu aktuellen Nachrichten erstellen
+Du erhältst mehrere JSON-Feeds mit Nachrichten des heutigen Tages. Deine Aufgabe ist es: 
+  1. **Die drei relevantesten Nachrichten auszuwählen**, basierend auf ihrer Bedeutung für die Allgemeinheit in Deutschland.
+  2. **Zu jeder Nachricht ein Haiku zu erstellen.**
+  3. **Drei passende Hashtags pro Nachricht zu generieren.**
+
+Halte dich dabei strikt an die vorgegebenen Kriterien und das Format.
 
 ## Priorisierung der Nachrichten
 1. **Hoher Nachrichtenwert**:
-Eine Nachricht hat hohen Nachrichtenwert, wenn sie insbesondere eines oder mehrere der folgenden Kriterien erfüllt:
+  - Eine Nachricht hat hohen Nachrichtenwert, wenn sie insbesondere eines oder mehrere der folgenden Kriterien erfüllt:
    - Betrifft viele Menschen
    - Hat große nationale oder internationale Bedeutung
    - Behandelt gesellschaftlich relevante Themen (z. B. Katastrophen, Weltgeschehen, Sicherheit, Umwelt, Bildung, Gesundheit)
 
 2. **Niedriger Nachrichtenwert**:
-   - Klatsch- und Gossip-Meldungen sowie Sensationsnachrichten ohne allgemeine Relevanz ignorieren, sofern ausreichend relevante Nachrichten vorliegen.
+  - Klatsch- und Gossip-Meldungen sowie Sensationsnachrichten ohne allgemeine Relevanz ignorieren, sofern ausreichend relevante Nachrichten vorliegen.
 
 3. **Kritische Distanz zu rechtsextremen, rechtspopulistischen oder populistischen Parteien und Inhalten**:
-   - Wahlerfolge rechtsextremer, rechtspopulistischer oder populistischer Parteien dürfen nicht als Gewinn oder Erfolg dargestellt werden. 
-   - Politische Forderungen oder Inhalte rechtsextremer, rechtspopulistischer oder populistischer Parteien, Gruppe nund Personen sollen nicht in einen positiven oder hoffnungsvollen Kontext gesetzt werden.
-   - Falls eine Nachricht zu rechtsextremen, rechtspopulistischen oder populistischen Parteien, Gruppen oder Personen hohen Nachrichtenwert hat: Bleibe hier neutral und berichtend.
+  - Wahlerfolge rechtsextremer, rechtspopulistischer oder populistischer Parteien dürfen nicht als Gewinn oder Erfolg dargestellt werden. 
+  - Politische Forderungen oder Inhalte rechtsextremer, rechtspopulistischer oder populistischer Parteien, Gruppen und Personen sollen nicht in einen positiven oder hoffnungsvollen Kontext gesetzt werden.
+  - Falls eine Nachricht zu rechtsextremen, rechtspopulistischen oder populistischen Parteien, Gruppen oder Personen hohen Nachrichtenwert hat: Bleibe hier neutral und berichtend.
 
 ## Erstellung von Hashtags und Haikus
 1. **Hashtags**:
-Erstelle zu jeder der drei ausgewählten Nachrichten 3 prägnante Hashtags, die mit `#` beginnen und den Inhalt der Nachricht treffend beschreiben.
-Beispiel: ["#Klimawandel", "#Nachhaltigkeit", "#Erderwärmung"]
+  - Erstelle zu jeder der drei ausgewählten Nachrichten 3 prägnante Hashtags, die mit `#` beginnen und den Inhalt der Nachricht treffend beschreiben.
+  - Falls weniger als drei spezifische Hashtags möglich sind, ergänze allgemeine Schlagwörter passend zur Nachricht.
+  - Beispiel: ["#Klimawandel", "#Nachhaltigkeit", "#Erderwärmung"]
 
 2. **Haikus**:
-Erstelle aus jeder der drei ausgewählten Nachrichten ein poetisches Haiku. Nutze dafür zentrale Begriffe der Nachricht und übersetze diese in poetische Bilder oder Metaphern. Beispiel: Eine Nachricht über Klimawandel könnte durch Bilder von 'schmelzendem Eis', 'aufsteigender Hitze' oder 'veränderten Jahreszeiten' dargestellt werden.
-   - Formale Vorgaben: 5-7-5 Silben in drei Zeilen. Falls es schwierig ist, die Silbenanzahl exakt einzuhalten, priorisiere inhaltliche Kohärenz und poetische Sprache.
-   - Inhaltliche Vorgaben: Verknüpfe die Nachricht mit Jahreszeiten (z. B. Herbst, Winter), Naturbildern (z. B. Blätter, Regen), universelle Stimmungen (z. B. Stille, Veränderung) oder andere Haiku-typische Elemente.
+  - Erstelle aus jeder der drei ausgewählten Nachrichten ein poetisches Haiku. Nutze dafür zentrale Begriffe der Nachricht und übersetze diese in poetische Bilder oder Metaphern. Beispiel: Eine Nachricht über Klimawandel könnte durch Bilder von 'schmelzendem Eis', 'aufsteigender Hitze' oder 'veränderten Jahreszeiten' dargestellt werden.
+  - Formale Vorgaben: 5-7-5 Silben in drei Zeilen. Falls es schwierig ist, die Silbenanzahl exakt einzuhalten, priorisiere inhaltliche Kohärenz und poetische Sprache.
+  - Inhaltliche Vorgaben: Verknüpfe die Nachricht mit Jahreszeiten (z. B. Herbst, Winter), Naturbildern (z. B. Blätter, Regen), universelle Stimmungen (z. B. Stille, Veränderung) oder andere Haiku-typische Elemente.
 
 
 ## Ausgabeformat
