@@ -9,7 +9,7 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
 
   const genAI = new GoogleGenerativeAI(getEnvVar("GEMINI_API"));
   const model = genAI.getGenerativeModel({
-    model: "gemini-1.5-flash",
+    model: "gemini-2.0-flash-exp",
     systemInstruction: instruction,
   });
 
@@ -31,8 +31,9 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
     if (!validationResult.success) throw new Error("Erzeugter Feed ist nicht valide.");
 
     return validationResult.data as HaikuFeed;;
-    // deno-lint-ignore no-explicit-any
-  } catch (err: any) {
-    throw new Error("Failed to parse JSON.", { cause: err?.message });
-  }
+  } catch (err: unknown) {
+    throw new Error("Failed to parse JSON.", {
+        cause: err instanceof Error ? err.message : String(err),
+    });
+}
 }
