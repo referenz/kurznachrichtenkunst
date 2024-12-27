@@ -1,12 +1,3 @@
-/*
-curl -X POST -H "Content-Type: application/json" \
-     -H "x-api-key: 1fdf3ff1-c8fb-4b77-8022-fd7c6d954d60" \
-     -d '{"text": "An autumn breeze blows,\nLeaves dance in the golden light,\nWhispers on the wind."}' \
-     http://127.0.0.1:3030/haiku --output haiku.webp
-
-
-     const text = 
-*/
 import { getEnvVar } from "../util/env.ts";
 import { delay } from "@std/async/delay";
 import { HaikuFeed } from "../types.ts";
