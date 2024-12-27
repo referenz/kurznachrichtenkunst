@@ -5,6 +5,7 @@ import { getFormattedHaikus } from "./services/formatHaikus.ts";
 import { postToMastodon } from "./services/mastodon.ts";
 import type { HaikuFeed } from "./types.ts";
 import { postToBluesky } from "./services/bluesky.ts";
+import { createTiles } from "./services/tile.ts";
 
 async function postHaikus(haikus: string[]) {
   for (const haiku of haikus) {
@@ -33,6 +34,7 @@ export async function executeMainLogic() {
     const formattedHaikus = getFormattedHaikus(response);
     await postHaikus(formattedHaikus);
     console.log("[INFO] Erfolgreich gepostet.");
+    createTiles(response);
   } catch (err: unknown) {
     console.error("Fehler aufgetreten: ", err);
   }

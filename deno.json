@@ -4,9 +4,9 @@
     "run": "deno run --env-file --allow-env --allow-net --allow-read ./src/main.ts"
   },
   "imports": {
-    "@atproto/api": "npm:@atproto/api@^0.13.20",
+    "@atproto/api": "npm:@atproto/api@^0.13.23",
     "@google/generative-ai": "npm:@google/generative-ai@^0.21.0",
-    "@std/assert": "jsr:@std/assert@^1.0.9",
+    "@std/assert": "jsr:@std/assert@^1.0.10",
     "@std/async": "jsr:@std/async@^1.0.9",
     "rss-parser": "npm:rss-parser@^3.13.0",
     "zod": "npm:zod@^3.24.1"
