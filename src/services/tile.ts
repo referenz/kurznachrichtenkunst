@@ -7,11 +7,7 @@ export async function createTiles (haiku_feed: HaikuFeed) {
     const api_key = getEnvVar("KNK_CANVAS_API_KEY");
 
     for (const single_haiku of haiku_feed.haikus) {
-        let text = '';
-        for (const line in single_haiku.haiku)
-            text += line + '\n';
-        text = text.trim();
-
+        const text = Object.values(single_haiku.haiku).join("\n").trim();
 
         const url = "https://referenz.io/haiku";
         const headers = {
@@ -19,14 +15,13 @@ export async function createTiles (haiku_feed: HaikuFeed) {
             "x-api-key": api_key
         };
 
-        await fetch(url, {
+        void await fetch(url, {
             method: "POST",
             headers: headers,
-            body: JSON.stringify(text)
+            body: JSON.stringify({text})
         });
 
         await delay(1500);
-
     }
 
 }
