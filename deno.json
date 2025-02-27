@@ -1,7 +1,7 @@
 {
   "tasks": {
     "ai-test": "deno run --env-file --allow-env --allow-net --allow-read ./src/test/gemini.ts",
-    "run": "deno run --env-file --allow-env --allow-net --allow-read ./src/main.ts"
+    "run": "deno run --unstable-cron --env-file --allow-env --allow-net --allow-read ./src/main.ts"
   },
   "imports": {
     "@atproto/api": "npm:@atproto/api@^0.14.7",
