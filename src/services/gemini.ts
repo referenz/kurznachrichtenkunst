@@ -9,7 +9,7 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
 
   const genAI = new GoogleGenerativeAI(getEnvVar("GEMINI_API"));
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash-exp",
+    model: "gemini-2.5-pro-exp-03-25",
     systemInstruction: instruction,
   });
 
