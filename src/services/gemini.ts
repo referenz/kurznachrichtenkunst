@@ -9,12 +9,13 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
 
   const genAI = new GoogleGenerativeAI(getEnvVar("GEMINI_API"));
   const model = genAI.getGenerativeModel({
-    model: "gemini-2.5-pro-exp-03-25",
+    model: "gemini-2.5-flash-preview-05-20",
+    //model: 'gemini-2.5-flash-preview-04-17',
     systemInstruction: instruction,
   });
 
   const result = await model.generateContent(prompt);
-  if (!result || !result.response || result.response.text().trim() === "") {
+  if (!result?.response?.text()?.trim()) {
     throw new Error("No response from AI model");
   }
 
@@ -30,10 +31,10 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
     const validationResult = validateHaikuFeed(jsonData);
     if (!validationResult.success) throw new Error("Erzeugter Feed ist nicht valide.");
 
-    return validationResult.data as HaikuFeed;;
+    return validationResult.data as HaikuFeed;
   } catch (err: unknown) {
     throw new Error("Failed to parse JSON.", {
-        cause: err instanceof Error ? err.message : String(err),
+      cause: err instanceof Error ? err.message : String(err),
     });
-}
+  }
 }

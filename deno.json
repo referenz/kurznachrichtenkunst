@@ -1,15 +1,19 @@
 {
   "tasks": {
-    "ai-test": "deno run --env-file --allow-env --allow-net --allow-read ./src/test/gemini.ts",
+    "chatgpt-test": "deno run --env-file --allow-env --allow-net --allow-read ./src/test/chatGPT.ts",
+    "gemini-test": "deno run --env-file --allow-env --allow-net --allow-read ./src/test/gemini.ts",
+    "ai-test": {
+      "dependencies": ["chatgpt-test", "gemini-test"]
+    },
     "run": "deno run --unstable-cron --env-file --allow-env --allow-net --allow-read ./src/main.ts"
   },
   "imports": {
-    "@atproto/api": "npm:@atproto/api@^0.14.21",
-    "@google/generative-ai": "npm:@google/generative-ai@^0.24.0",
-    "@std/assert": "jsr:@std/assert@^1.0.12",
-    "@std/async": "jsr:@std/async@^1.0.12",
+    "@atproto/api": "npm:@atproto/api@^0.15.8",
+    "@google/generative-ai": "npm:@google/generative-ai@^0.24.1",
+    "@std/assert": "jsr:@std/assert@^1.0.13",
+    "@std/async": "jsr:@std/async@^1.0.13",
     "rss-parser": "npm:rss-parser@^3.13.0",
-    "zod": "npm:zod@^3.24.2"
+    "zod": "npm:zod@^3.25.23"
   },
   "fmt": {
     "lineWidth": 120
