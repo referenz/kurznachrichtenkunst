@@ -8,12 +8,12 @@
     "run": "deno run --unstable-cron --env-file --allow-env --allow-net --allow-read ./src/main.ts"
   },
   "imports": {
-    "@atproto/api": "npm:@atproto/api@^0.15.8",
+    "@atproto/api": "npm:@atproto/api@^0.16.2",
     "@google/generative-ai": "npm:@google/generative-ai@^0.24.1",
     "@std/assert": "jsr:@std/assert@^1.0.13",
-    "@std/async": "jsr:@std/async@^1.0.13",
+    "@std/async": "jsr:@std/async@^1.0.14",
     "rss-parser": "npm:rss-parser@^3.13.0",
-    "zod": "npm:zod@^3.25.23"
+    "zod": "npm:zod@^4.0.17"
   },
   "fmt": {
     "lineWidth": 120
