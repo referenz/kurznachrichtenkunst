@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { z } from "zod/v4";
 
 // Haiku-Schema
 const HaikuSchema = z.object({
@@ -29,7 +29,7 @@ export function validateHaikuFeed(data: unknown): { success: boolean; data?: Hai
     return { success: true, data: result.data }; // Gültige Daten
   } else {
     // Fehler extrahieren und lesbarer machen
-    const errors = result.error.errors.map(err => {
+    const errors = result.error.issues.map((err) => {
       const path = err.path.join(".");
       return `Error at "${path}": ${err.message}`;
     });
