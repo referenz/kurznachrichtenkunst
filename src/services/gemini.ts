@@ -1,15 +1,18 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
-import { getEnvVar } from "../util/env.ts";
 import type { HaikuFeed } from "../types.ts";
+import { getEnvVar } from "../util/env.ts";
 import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";
 
 export async function generateResponse(prompt: string): Promise<HaikuFeed> {
   const __dirname = new URL(".", import.meta.url).pathname;
-  const instruction = await Deno.readTextFile(`${__dirname}/../util/instruction.md`);
+  const instruction = await Deno.readTextFile(
+    `${__dirname}/../util/instruction.md`,
+  );
 
   const genAI = new GoogleGenerativeAI(getEnvVar("GEMINI_API"));
   const model = genAI.getGenerativeModel({
-    model: "gemini-3-pro-preview",
+    model: "gemini-3-flash-preview",
+    //model: "gemini-3-pro-preview",
     // model: "gemini-2.5-flash",
     // model: "gemini-2.5-flash-preview-05-20",
     //model: 'gemini-2.5-flash-preview-04-17',
@@ -31,7 +34,8 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
     const jsonData = JSON.parse(resultText);
 
     const validationResult = validateHaikuFeed(jsonData);
-    if (!validationResult.success) throw new Error("Erzeugter Feed ist nicht valide.");
+    if (!validationResult.success)
+      throw new Error("Erzeugter Feed ist nicht valide.");
 
     return validationResult.data as HaikuFeed;
   } catch (err: unknown) {

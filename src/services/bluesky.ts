@@ -17,9 +17,9 @@ function generateFacetsFromHashtags(text: string) {
   const hashtagRegex = /#[\p{L}\p{N}_]+/gu;
   const encoder = new TextEncoder();
   const facets = [];
-  let match;
-
-  while ((match = hashtagRegex.exec(text)) !== null) {
+  
+  const match = hashtagRegex.exec(text);
+  while (match !== null) {
     const hashtag = match[0]; // Gefundener Hashtag
 
     // UTF-8-Byte-Länge vor dem Hashtag berechnen

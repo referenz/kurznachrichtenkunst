@@ -6,6 +6,7 @@ const feedUrls = [
   "https://newsfeed.zeit.de/",
   "http://www.bild.de/rssfeeds/rss3-20745882,feed=alles.bild.html",
   "https://www.deutschlandfunk.de/nachrichten-100.rss",
+  "https://www.faz.net/rss/aktuell/",
 ];
 
 async function fetchAndFilterFeed(url: string) {
@@ -14,7 +15,7 @@ async function fetchAndFilterFeed(url: string) {
     const feed = await parser.parseURL(url);
 
     // Aktuelle Zeit in Millisekunden
-    const now = new Date().getTime();
+    const now = Date.now();
 
     // Nur Items behalten, die in den letzten 24 Stunden veröffentlicht wurden
     const filteredItems = feed.items.filter((item) => {
