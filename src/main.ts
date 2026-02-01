@@ -1,14 +1,16 @@
-import { executeMainLogic } from "./mainLogic.ts";
+import { executeMainLogic } from "./mainLogic.ts"
+
 // import { isDenoDeploy } from "./util/isDenoDeploy.ts";
 
+executeMainLogic();
 
+/*
 Deno.cron("taegliche Posts", "45 18 * * *", () => {
   executeMainLogic();
 });
-
+*/
 
 /*
-
 if (isDenoDeploy()) {
   Deno.cron("taegliche Posts", "45 18 * * *", () => {
     executeMainLogic();
