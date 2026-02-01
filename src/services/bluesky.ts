@@ -1,4 +1,4 @@
-import { AtpAgent } from "@atproto/api";
+import { AtpAgent, RichText } from "@atproto/api";
 import { getEnvVar } from "../util/env.ts";
 
 interface BlueskyConfig {
@@ -13,38 +13,6 @@ function getBlueskyConfig(): BlueskyConfig {
   };
 }
 
-function generateFacetsFromHashtags(text: string) {
-  const hashtagRegex = /#[\p{L}\p{N}_]+/gu;
-  const encoder = new TextEncoder();
-  const facets = [];
-  
-  const match = hashtagRegex.exec(text);
-  while (match !== null) {
-    const hashtag = match[0]; // Gefundener Hashtag
-
-    // UTF-8-Byte-Länge vor dem Hashtag berechnen
-    const byteStart = encoder.encode(text.slice(0, match.index)).length;
-    const byteEnd = byteStart + encoder.encode(hashtag).length;
-
-    facets.push({
-      index: {
-        byteStart,
-        byteEnd,
-      },
-      features: [
-        {
-          $type: "app.bsky.richtext.facet#tag",
-          tag: hashtag.slice(1), // Entferne das '#' für die API
-        },
-      ],
-    });
-  }
-
-  return facets;
-}
-
-
-
 export async function postToBluesky(message: string) {
   const agent = new AtpAgent({
     service: "https://bsky.social",
@@ -56,9 +24,12 @@ export async function postToBluesky(message: string) {
     password,
   });
 
+  const rt = new RichText({ text: message });
+  await rt.detectFacets(agent);
+
   await agent.post({
-    text: message,
-    facets: generateFacetsFromHashtags(message),
+    text: rt.text,
+    facets: rt.facets,
     createdAt: new Date().toISOString(),
   });
 }
