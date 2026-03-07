@@ -1,8 +1,8 @@
 import { delay } from "@std/async/delay";
 import { postToBluesky } from "./services/bluesky.ts";
+import { generateResponse } from "./services/ai.ts";
 import { getNews } from "./services/feeds.ts";
 import { getFormattedHaikus } from "./services/formatHaikus.ts";
-import { generateResponse } from "./services/claude.ts";
 import { postToMastodon } from "./services/mastodon.ts";
 import { createTiles } from "./services/tile.ts";
 import type { HaikuFeed } from "./types.ts";

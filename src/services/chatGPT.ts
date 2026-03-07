@@ -3,7 +3,7 @@ import { getEnvVar } from "../util/env.ts";
 import type { HaikuFeed } from "../types.ts";
 import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";
 
-const OPENAI_MODEL = "gpt-4o";
+const OPENAI_MODEL = "gpt-4.1-mini";
 
 export async function generateResponse(prompt: string): Promise<HaikuFeed> {
   const __dirname = new URL(".", import.meta.url).pathname;
