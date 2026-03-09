@@ -4,7 +4,7 @@ import { generateResponse } from "./services/ai.ts";
 import { getNews } from "./services/feeds.ts";
 import { getFormattedHaikus } from "./services/formatHaikus.ts";
 import { postToMastodon } from "./services/mastodon.ts";
-import { createTiles } from "./services/tile.ts";
+// import { createTiles } from "./services/tile.ts";
 import type { HaikuFeed } from "./types.ts";
 
 async function postHaikus(haikus: string[]) {
@@ -27,7 +27,7 @@ export async function executeMainLogic() {
   let response: HaikuFeed;
   try {
     response = (await generateResponse(news.join("\n"))) as HaikuFeed;
-    console.log("[INFO] Generierte Haikus:", response);
+    console.debug("[INFO] Generierte Haikus:", response);
     const formattedHaikus = getFormattedHaikus(response);
     await postHaikus(formattedHaikus);
     console.log("[INFO] Erfolgreich gepostet.");

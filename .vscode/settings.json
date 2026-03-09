@@ -1,4 +1,5 @@
 {
     "deno.enable": true,
-    "oxc.enable": true
+    "oxc.enable": true,
+    "oxc.typeAware": true
 }
