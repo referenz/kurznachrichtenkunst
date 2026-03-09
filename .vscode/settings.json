@@ -1,7 +1,4 @@
 {
     "deno.enable": true,
-    "editor.codeActionsOnSave": {
-    "source.organizeImports.biome": "explicit",
-    "source.fixAll.biome": "explicit"
-  }
+    "oxc.enable": true
 }
