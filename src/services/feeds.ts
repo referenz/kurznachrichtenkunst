@@ -9,37 +9,35 @@ const feedUrls = [
   "https://www.faz.net/rss/aktuell/",
 ];
 
-async function fetchAndFilterFeed(url: string) {
+async function fetchAndFilterFeed(url: string): Promise<string[]> {
   try {
     const parser = new Parser();
     const feed = await parser.parseURL(url);
-
-    // Aktuelle Zeit in Millisekunden
     const now = Date.now();
+    const oneDay = 24 * 60 * 60 * 1000;
 
-    // Nur Items behalten, die in den letzten 24 Stunden veröffentlicht wurden
-    const filteredItems = feed.items.filter((item) => {
-      if (!item.pubDate) return false;
-      const pubDate = new Date(item.pubDate).getTime();
-      const oneDay = 24 * 60 * 60 * 1000; // 24 Stunden in Millisekunden
-      return now - pubDate <= oneDay;
-    });
-
-    // Aktualisiere den Feed mit den gefilterten Items
-    feed.items = filteredItems;
-
-    // console.log(`Gefilterter Feed (${filteredItems.length} Items):`);
-    //filteredItems.forEach((item) => console.log(item.title));
-    return JSON.stringify(feed); // Du kannst den Feed hier weiterverarbeiten
+    return feed.items
+      .filter((item) => {
+        if (!item.pubDate) return false;
+        return now - new Date(item.pubDate).getTime() <= oneDay;
+      })
+      .map((item) => {
+        const title = item.title?.trim();
+        const teaser = item.contentSnippet?.trim() || item.content?.trim();
+        if (!title) return null;
+        return teaser ? `${title}\n${teaser}` : title;
+      })
+      .filter((line): line is string => Boolean(line));
   } catch (error) {
-    console.error(`Fehler beim Abrufen oder Filtern des Feeds (${url}): `, error);
+    console.error(`Fehler beim Abrufen des Feeds (${url}): `, error);
+    return [];
   }
 }
 
 export async function getNews(): Promise<string[]> {
-  const feedContents = await Promise.allSettled(feedUrls.map(fetchAndFilterFeed));
+  const results = await Promise.allSettled(feedUrls.map(fetchAndFilterFeed));
 
-  return feedContents
-    .filter((result): result is PromiseFulfilledResult<string> => result.status === "fulfilled")
-    .map((result) => result.value);
+  return results
+    .filter((r): r is PromiseFulfilledResult<string[]> => r.status === "fulfilled")
+    .flatMap((r) => r.value);
 }
