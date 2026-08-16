@@ -17,10 +17,11 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
 
   const response = await anthropic.messages.create({
     model: CLAUDE_MODEL,
-    // Thinking-Budget für Auswahl/Dedup der Meldungen und Silbenprüfung,
-    // Rest von max_tokens für das JSON (~350 Tokens) plus Reserve.
-    max_tokens: 6000,
-    thinking: { type: "enabled", budget_tokens: 4000 },
+    // Adaptives Thinking für Auswahl/Dedup der Meldungen und Silbenprüfung.
+    // max_tokens deckt Thinking und JSON (~350 Tokens) gemeinsam ab, plus Reserve.
+    max_tokens: 8000,
+    thinking: { type: "adaptive" },
+    output_config: { effort: "medium" },
     system: instruction,
     messages: [{ role: "user", content: prompt }],
   });
