@@ -9,14 +9,14 @@
     "run": "deno run -P --env-file=.env ./src/main.ts"
   },
   "imports": {
-    "@atproto/api": "npm:@atproto/api@^0.19.4",
-    "@anthropic-ai/sdk": "npm:@anthropic-ai/sdk@^0.80.0",
+    "@atproto/api": "npm:@atproto/api@^0.20.36",
+    "@anthropic-ai/sdk": "npm:@anthropic-ai/sdk@^0.115.0",
     "@google/generative-ai": "npm:@google/generative-ai@^0.24.1",
-    "openai": "npm:openai@^6.32.0",
+    "openai": "npm:openai@^7.3.0",
     "@std/assert": "jsr:@std/assert@^1.0.19",
-    "@std/async": "jsr:@std/async@^1.2.0",
+    "@std/async": "jsr:@std/async@^1.5.0",
     "rss-parser": "npm:rss-parser@^3.13.0",
-    "zod": "npm:zod@^4.3.6"
+    "zod": "npm:zod@^4.4.3"
   },
   "permissions": {
     "default": {

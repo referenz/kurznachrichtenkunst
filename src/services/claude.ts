@@ -3,7 +3,7 @@ import type { HaikuFeed } from "../types.ts";
 import { getEnvVar } from "../util/env.ts";
 import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";
 
-const CLAUDE_MODEL = "claude-sonnet-4-6";
+const CLAUDE_MODEL = "claude-sonnet-5";
 
 export async function generateResponse(prompt: string): Promise<HaikuFeed> {
   const __dirname = new URL(".", import.meta.url).pathname;
@@ -17,10 +17,20 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
 
   const response = await anthropic.messages.create({
     model: CLAUDE_MODEL,
-    max_tokens: 2000,
+    // Thinking-Budget für Auswahl/Dedup der Meldungen und Silbenprüfung,
+    // Rest von max_tokens für das JSON (~350 Tokens) plus Reserve.
+    max_tokens: 6000,
+    thinking: { type: "enabled", budget_tokens: 4000 },
     system: instruction,
     messages: [{ role: "user", content: prompt }],
   });
+
+  if (response.stop_reason === "max_tokens") {
+    throw new Error(
+      `Antwort bei max_tokens abgeschnitten (${response.usage.output_tokens} Output-Tokens). ` +
+        `max_tokens oder budget_tokens anpassen.`,
+    );
+  }
 
   const textBlocks = response.content.filter((block) => block.type === "text");
   const resultTextRaw = textBlocks
