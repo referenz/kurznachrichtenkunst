@@ -1,4 +1,4 @@
-import { z } from "zod/v4";
+import * as z from "zod";
 
 // Haiku-Schema
 const HaikuSchema = z.object({
@@ -20,11 +20,9 @@ const HaikuFeedSchema = z.object({
 export type HaikuFeed = z.infer<typeof HaikuFeedSchema>;
 
 // Validierungsfunktion
-export function validateHaikuFeed(data: unknown): {
-  success: boolean;
-  data?: HaikuFeed;
-  errors?: string[];
-} {
+export function validateHaikuFeed(
+  data: unknown,
+): { success: true; data: HaikuFeed } | { success: false; errors: string[] } {
   const result = HaikuFeedSchema.safeParse(data);
 
   if (result.success) {

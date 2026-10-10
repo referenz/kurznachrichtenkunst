@@ -36,7 +36,7 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
     const validationResult = validateHaikuFeed(jsonData);
     if (!validationResult.success) throw new Error("Erzeugter Feed ist nicht valide.");
 
-    return validationResult.data as HaikuFeed;
+    return validationResult.data;
   } catch (err: unknown) {
     throw new Error("Failed to parse JSON.", {
       cause: err instanceof Error ? err.message : String(err),

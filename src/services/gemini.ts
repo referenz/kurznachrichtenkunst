@@ -35,5 +35,5 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
   if (!validationResult.success) {
     throw new Error("Erzeugter Feed ist nicht valide.");
   }
-  return validationResult.data as HaikuFeed;
+  return validationResult.data;
 }
