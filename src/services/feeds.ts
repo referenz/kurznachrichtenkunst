@@ -1,4 +1,4 @@
-import Parser from "rss-parser";
+import { parseFeed } from "@rowanmanning/feed-parser";
 
 const feedUrls = [
   "https://www.spiegel.de/schlagzeilen/rss/0,5291,,00.xml",
@@ -9,30 +9,52 @@ const feedUrls = [
   "https://www.faz.net/rss/aktuell/",
 ];
 
-const parser = new Parser();
+const oneDay = 24 * 60 * 60 * 1000;
+
+type FeedItem = ReturnType<typeof parseFeed>["items"][number];
+
+// Manche Feeds (z. B. Bild) nutzen Zeitzonen-Kürzel wie "CEST", die Date nicht versteht.
+const timezoneOffsets: Record<string, string> = { CET: "+0100", CEST: "+0200" };
+
+function getPublished(item: FeedItem): Date | null {
+  if (item.published) return item.published;
+
+  const raw = item.element.findElementWithName("pubdate")?.textContentNormalized;
+  if (!raw) return null;
+
+  const date = new Date(raw.replace(/\b(CEST|CET)$/, (tz) => timezoneOffsets[tz]));
+  return Number.isNaN(date.getTime()) ? null : date;
+}
+
+function stripHtml(text: string): string {
+  return text
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
 
 async function fetchAndFilterFeed(url: string): Promise<string[]> {
   try {
-    // fetch statt parser.parseURL: parseURL lässt bei Redirects die Antwort
-    // ungelesen offen, der Socket bleibt hängen und der Prozess endet nie.
     const response = await fetch(url, {
-      headers: { "User-Agent": "rss-parser", Accept: "application/rss+xml" },
+      headers: {
+        "User-Agent": "kurznachrichtenkunst",
+        Accept: "application/rss+xml, application/atom+xml, application/xml;q=0.9, */*;q=0.8",
+      },
       signal: AbortSignal.timeout(30000),
     });
     if (!response.ok) throw new Error(`Status ${response.status}`);
 
-    const feed = await parser.parseString(await response.text());
+    const feed = parseFeed(await response.text());
     const now = Date.now();
-    const oneDay = 24 * 60 * 60 * 1000;
 
     return feed.items
       .filter((item) => {
-        if (!item.pubDate) return false;
-        return now - new Date(item.pubDate).getTime() <= oneDay;
+        const published = getPublished(item);
+        return published !== null && now - published.getTime() <= oneDay;
       })
       .map((item) => {
         const title = item.title?.trim();
-        const teaser = item.contentSnippet?.trim() || item.content?.trim();
+        const teaser = stripHtml(item.description || item.content || "");
         if (!title) return null;
         return teaser ? `${title}\n${teaser}` : title;
       })
