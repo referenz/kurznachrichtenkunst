@@ -9,10 +9,19 @@ const feedUrls = [
   "https://www.faz.net/rss/aktuell/",
 ];
 
+const parser = new Parser();
+
 async function fetchAndFilterFeed(url: string): Promise<string[]> {
   try {
-    const parser = new Parser();
-    const feed = await parser.parseURL(url);
+    // fetch statt parser.parseURL: parseURL lässt bei Redirects die Antwort
+    // ungelesen offen, der Socket bleibt hängen und der Prozess endet nie.
+    const response = await fetch(url, {
+      headers: { "User-Agent": "rss-parser", "Accept": "application/rss+xml" },
+      signal: AbortSignal.timeout(30000),
+    });
+    if (!response.ok) throw new Error(`Status ${response.status}`);
+
+    const feed = await parser.parseString(await response.text());
     const now = Date.now();
     const oneDay = 24 * 60 * 60 * 1000;
 

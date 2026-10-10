@@ -1,5 +1,5 @@
 export function getEnvVar(name: string): string {
-  const value = Deno.env.get(name);
+  const value = process.env[name];
   if (!value) throw new Error(`Die Umgebungsvariable '${name}' ist nicht gesetzt.`);
   return value;
 }

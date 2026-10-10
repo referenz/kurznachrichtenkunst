@@ -1,0 +1,25 @@
+{
+  "name": "kurznachrichtenkunst",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=.env ./src/main.ts",
+    "feeds-test": "node --env-file=.env ./src/test/feeds.ts",
+    "chatgpt-test": "node --env-file=.env ./src/test/chatGPT.ts",
+    "gemini-test": "node --env-file=.env ./src/test/gemini.ts",
+    "ai-test": "npm run chatgpt-test && npm run gemini-test",
+    "check": "tsc"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
+    "@atproto/api": "^0.24.3",
+    "@google/genai": "^2.28.0",
+    "openai": "^7.32.0",
+    "rss-parser": "^3.13.0",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "typescript": "^7.0"
+  }
+}

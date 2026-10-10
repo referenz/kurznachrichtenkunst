@@ -1,4 +1,4 @@
-import { delay } from "@std/async/delay";
+import { setTimeout } from "node:timers/promises";
 import type { HaikuFeed } from "../types.ts";
 import { getEnvVar } from "../util/env.ts";
 
@@ -20,6 +20,6 @@ export async function createTiles(haiku_feed: HaikuFeed) {
 			body: JSON.stringify({ text }),
 		}));
 
-		await delay(1500);
+		await setTimeout(1500);
 	}
 }

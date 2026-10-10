@@ -2,14 +2,12 @@ import OpenAI from "openai";
 import { getEnvVar } from "../util/env.ts";
 import type { HaikuFeed } from "../types.ts";
 import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";
+import { readFile } from "node:fs/promises";
 
-const OPENAI_MODEL = "gpt-5.2";
+const OPENAI_MODEL = "gpt-6.1-sol";
 
 export async function generateResponse(prompt: string): Promise<HaikuFeed> {
-  const __dirname = new URL(".", import.meta.url).pathname;
-  const instruction = await Deno.readTextFile(
-    `${__dirname}/../util/instruction.md`,
-  );
+  const instruction = await readFile(new URL("../util/instruction.md", import.meta.url), "utf-8");
 
   const openai = new OpenAI({
     apiKey: getEnvVar("OPENAI_API_KEY"),
@@ -19,7 +17,7 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
     model: OPENAI_MODEL,
     instructions: instruction,
     input: prompt,
-    temperature: 1.0,
+    reasoning: { effort: "low" },
   });
 
   const resultTextRaw = response.output_text?.trim() || "";

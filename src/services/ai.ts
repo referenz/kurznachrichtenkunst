@@ -6,7 +6,7 @@ import { generateResponse as generateChatGPTResponse } from "./chatGPT.ts";
 type AiProvider = "claude" | "gemini" | "chatgpt";
 
 function getAiProvider(): AiProvider {
-  const provider = (Deno.env.get("AI_PROVIDER") || "claude").toLowerCase();
+  const provider = (process.env.AI_PROVIDER || "claude").toLowerCase();
   if (provider === "claude" || provider === "gemini" || provider === "chatgpt") {
     return provider;
   }

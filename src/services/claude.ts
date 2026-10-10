@@ -2,14 +2,12 @@ import Anthropic from "@anthropic-ai/sdk";
 import type { HaikuFeed } from "../types.ts";
 import { getEnvVar } from "../util/env.ts";
 import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";
+import { readFile } from "node:fs/promises";
 
-const CLAUDE_MODEL = "claude-sonnet-5";
+const CLAUDE_MODEL = "claude-sonnet-5-5";
 
 export async function generateResponse(prompt: string): Promise<HaikuFeed> {
-  const __dirname = new URL(".", import.meta.url).pathname;
-  const instruction = await Deno.readTextFile(
-    `${__dirname}/../util/instruction.md`,
-  );
+  const instruction = await readFile(new URL("../util/instruction.md", import.meta.url), "utf-8");
 
   const anthropic = new Anthropic({
     apiKey: getEnvVar("ANTHROPIC_API_KEY"),
@@ -29,7 +27,7 @@ export async function generateResponse(prompt: string): Promise<HaikuFeed> {
   if (response.stop_reason === "max_tokens") {
     throw new Error(
       `Antwort bei max_tokens abgeschnitten (${response.usage.output_tokens} Output-Tokens). ` +
-        `max_tokens oder budget_tokens anpassen.`,
+        `max_tokens erhöhen oder effort senken.`,
     );
   }
 
