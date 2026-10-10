@@ -1,5 +1,5 @@
-import { getNews } from "../services/feeds.ts";
 import { generateResponse } from "../services/chatGPT.ts";
+import { getNews } from "../services/feeds.ts";
 import type { HaikuFeed } from "../types.ts";
 
 export async function executeMainLogic() {

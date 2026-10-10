@@ -1,5 +1,5 @@
-import { GoogleGenAI } from "@google/genai";
 import { readFile } from "node:fs/promises";
+import { GoogleGenAI } from "@google/genai";
 import type { HaikuFeed } from "../types.ts";
 import { getEnvVar } from "../util/env.ts";
 import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";

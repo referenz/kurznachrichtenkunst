@@ -1,8 +1,8 @@
-import OpenAI from "openai";
-import { getEnvVar } from "../util/env.ts";
-import type { HaikuFeed } from "../types.ts";
-import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";
 import { readFile } from "node:fs/promises";
+import OpenAI from "openai";
+import type { HaikuFeed } from "../types.ts";
+import { getEnvVar } from "../util/env.ts";
+import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";
 
 const OPENAI_MODEL = "gpt-6.1-sol";
 

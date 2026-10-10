@@ -1,8 +1,8 @@
+import { readFile } from "node:fs/promises";
 import Anthropic from "@anthropic-ai/sdk";
 import type { HaikuFeed } from "../types.ts";
 import { getEnvVar } from "../util/env.ts";
 import { validateHaikuFeed } from "../util/validateHaikuFeed.ts";
-import { readFile } from "node:fs/promises";
 
 const CLAUDE_MODEL = "claude-sonnet-5-5";
 

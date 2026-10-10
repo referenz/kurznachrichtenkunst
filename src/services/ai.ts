@@ -1,7 +1,7 @@
 import type { HaikuFeed } from "../types.ts";
+import { generateResponse as generateChatGPTResponse } from "./chatGPT.ts";
 import { generateResponse as generateClaudeResponse } from "./claude.ts";
 import { generateResponse as generateGeminiResponse } from "./gemini.ts";
-import { generateResponse as generateChatGPTResponse } from "./chatGPT.ts";
 
 type AiProvider = "claude" | "gemini" | "chatgpt";
 

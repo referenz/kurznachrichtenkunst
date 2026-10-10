@@ -1,6 +1,6 @@
 import { setTimeout } from "node:timers/promises";
-import { postToBluesky } from "./services/bluesky.ts";
 import { generateResponse } from "./services/ai.ts";
+import { postToBluesky } from "./services/bluesky.ts";
 import { getNews } from "./services/feeds.ts";
 import { getFormattedHaikus } from "./services/formatHaikus.ts";
 import { postToMastodon } from "./services/mastodon.ts";
