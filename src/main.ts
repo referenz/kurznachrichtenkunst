@@ -37,4 +37,4 @@ export async function executeMainLogic() {
   }
 }
 
-executeMainLogic();
+await executeMainLogic();
