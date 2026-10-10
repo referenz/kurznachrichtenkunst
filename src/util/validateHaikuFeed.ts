@@ -7,9 +7,7 @@ const HaikuSchema = z.object({
     line2: z.string(),
     line3: z.string(),
   }),
-  hashtags: z
-    .array(z.string().regex(/^#/))
-    .length(3), // Genau 3 Hashtags
+  hashtags: z.array(z.string().regex(/^#/)).length(3), // Genau 3 Hashtags
 });
 
 // Haiku-Feed-Schema mit genau 3 Haikus
@@ -22,7 +20,11 @@ const HaikuFeedSchema = z.object({
 export type HaikuFeed = z.infer<typeof HaikuFeedSchema>;
 
 // Validierungsfunktion
-export function validateHaikuFeed(data: unknown): { success: boolean; data?: HaikuFeed; errors?: string[] } {
+export function validateHaikuFeed(data: unknown): {
+  success: boolean;
+  data?: HaikuFeed;
+  errors?: string[];
+} {
   const result = HaikuFeedSchema.safeParse(data);
 
   if (result.success) {

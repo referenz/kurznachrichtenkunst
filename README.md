@@ -42,25 +42,25 @@ Danach in `.env` die Zugangsdaten eintragen (siehe unten).
 
 Die Umgebungsvariablen werden beim Start aus `.env` gelesen.
 
-| Variable             | Beschreibung                                                                 |
-|----------------------|------------------------------------------------------------------------------|
-| `AI_PROVIDER`        | KI-Anbieter: `claude` (Standard), `gemini` oder `chatgpt`                    |
-| `ANTHROPIC_API_KEY`  | API-Schlüssel für Claude (nur bei `claude` nötig)                            |
-| `GEMINI_API`         | API-Schlüssel für Gemini (nur bei `gemini` nötig)                            |
-| `OPENAI_API_KEY`     | API-Schlüssel für ChatGPT (nur bei `chatgpt` nötig)                          |
-| `MASTODON_INSTANCE`  | Hostname der Mastodon-Instanz **ohne** `https://`, z. B. `mastodon.social`   |
-| `MASTODON_TOKEN`     | Zugriffstoken einer Mastodon-Anwendung mit Schreibrecht für Posts            |
-| `BLUESKY_IDENTIFIER` | Bluesky-Handle, z. B. `name.bsky.social`                                     |
-| `BLUESKY_PASSWORD`   | Bluesky-App-Passwort (nicht das Kontopasswort)                               |
-| `KNK_CANVAS_API_KEY` | Derzeit nicht genutzt (gehört zur deaktivierten Bildkachel-Funktion, s. u.)  |
+| Variable             | Beschreibung                                                                |
+| -------------------- | --------------------------------------------------------------------------- |
+| `AI_PROVIDER`        | KI-Anbieter: `claude` (Standard), `gemini` oder `chatgpt`                   |
+| `ANTHROPIC_API_KEY`  | API-Schlüssel für Claude (nur bei `claude` nötig)                           |
+| `GEMINI_API`         | API-Schlüssel für Gemini (nur bei `gemini` nötig)                           |
+| `OPENAI_API_KEY`     | API-Schlüssel für ChatGPT (nur bei `chatgpt` nötig)                         |
+| `MASTODON_INSTANCE`  | Hostname der Mastodon-Instanz **ohne** `https://`, z. B. `mastodon.social`  |
+| `MASTODON_TOKEN`     | Zugriffstoken einer Mastodon-Anwendung mit Schreibrecht für Posts           |
+| `BLUESKY_IDENTIFIER` | Bluesky-Handle, z. B. `name.bsky.social`                                    |
+| `BLUESKY_PASSWORD`   | Bluesky-App-Passwort (nicht das Kontopasswort)                              |
+| `KNK_CANVAS_API_KEY` | Derzeit nicht genutzt (gehört zur deaktivierten Bildkachel-Funktion, s. u.) |
 
 Die verwendeten Modelle sind fest im Code eingetragen:
 
-| Anbieter | Modell              | Datei                                                  |
-|----------|---------------------|--------------------------------------------------------|
-| Claude   | `claude-sonnet-5-5` | [src/services/claude.ts](src/services/claude.ts)       |
-| Gemini   | `gemini-3.8-flash`  | [src/services/gemini.ts](src/services/gemini.ts)       |
-| ChatGPT  | `gpt-6.1-sol`       | [src/services/chatGPT.ts](src/services/chatGPT.ts)     |
+| Anbieter | Modell              | Datei                                              |
+| -------- | ------------------- | -------------------------------------------------- |
+| Claude   | `claude-sonnet-5-5` | [src/services/claude.ts](src/services/claude.ts)   |
+| Gemini   | `gemini-3.8-flash`  | [src/services/gemini.ts](src/services/gemini.ts)   |
+| ChatGPT  | `gpt-6.1-sol`       | [src/services/chatGPT.ts](src/services/chatGPT.ts) |
 
 ## Ausführen
 
@@ -75,7 +75,7 @@ Wenn beim Abruf der Feeds keine Meldungen zusammenkommen, endet der Lauf mit ein
 Diese Skripte rufen einzelne Teile auf, ohne etwas zu posten:
 
 | Befehl                 | Zweck                                                   |
-|------------------------|---------------------------------------------------------|
+| ---------------------- | ------------------------------------------------------- |
 | `npm run feeds-test`   | Lädt die Nachrichten aus den Feeds und gibt sie aus     |
 | `npm run gemini-test`  | Erzeugt Haikus mit Gemini                               |
 | `npm run chatgpt-test` | Erzeugt Haikus mit ChatGPT                              |

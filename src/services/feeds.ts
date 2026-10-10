@@ -16,7 +16,7 @@ async function fetchAndFilterFeed(url: string): Promise<string[]> {
     // fetch statt parser.parseURL: parseURL lässt bei Redirects die Antwort
     // ungelesen offen, der Socket bleibt hängen und der Prozess endet nie.
     const response = await fetch(url, {
-      headers: { "User-Agent": "rss-parser", "Accept": "application/rss+xml" },
+      headers: { "User-Agent": "rss-parser", Accept: "application/rss+xml" },
       signal: AbortSignal.timeout(30000),
     });
     if (!response.ok) throw new Error(`Status ${response.status}`);

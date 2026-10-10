@@ -11,9 +11,7 @@ function getAiProvider(): AiProvider {
     return provider;
   }
 
-  throw new Error(
-    `Ungültiger AI_PROVIDER '${provider}'. Erlaubt: claude, gemini, chatgpt.`,
-  );
+  throw new Error(`Ungültiger AI_PROVIDER '${provider}'. Erlaubt: claude, gemini, chatgpt.`);
 }
 
 export async function generateResponse(prompt: string): Promise<HaikuFeed> {

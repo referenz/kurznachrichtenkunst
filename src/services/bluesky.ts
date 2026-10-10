@@ -17,7 +17,7 @@ export async function postToBluesky(message: string) {
   const agent = new AtpAgent({
     service: "https://bsky.social",
   });
-  
+
   const { identifier, password } = getBlueskyConfig();
   await agent.login({
     identifier,

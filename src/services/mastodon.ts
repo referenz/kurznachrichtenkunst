@@ -18,13 +18,13 @@ export async function postToMastodon(message: string) {
   const response = await fetch(apiUrl, {
     method: "POST",
     headers: {
-      "Authorization": `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ 
+    body: JSON.stringify({
       status: message,
-      language: 'de',
-     }),
+      language: "de",
+    }),
   });
 
   if (!response.ok) {

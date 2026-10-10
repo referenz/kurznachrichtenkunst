@@ -73,7 +73,7 @@ Das wichtigste Gestaltungsmittel: Ein Haiku besteht nicht aus einem Satz, der ü
 
 ## Beispiele
 
-**Meldung:** *Bahn-Streik: GDL ruft zu 24-stündigem Ausstand auf. Der Fernverkehr steht ab Montag früh weitgehend still.*
+**Meldung:** _Bahn-Streik: GDL ruft zu 24-stündigem Ausstand auf. Der Fernverkehr steht ab Montag früh weitgehend still._
 
 ```text
 Am Bahnsteig wartet
@@ -85,7 +85,7 @@ Fahrpläne welken
 
 Das Wort „Streik" fällt nicht. Der Schnitt liegt nach Zeile 2; „welken" holt ein Naturbild in eine Verwaltungsangelegenheit.
 
-**Meldung:** *Dürre in Brandenburg: Waldbrandgefahr erreicht höchste Stufe. Seit Wochen kein Regen.*
+**Meldung:** _Dürre in Brandenburg: Waldbrandgefahr erreicht höchste Stufe. Seit Wochen kein Regen._
 
 ```text
 Kiefern halten still
@@ -97,7 +97,7 @@ ein Streichholz genügt
 
 Kein abstraktes Wort, keine Wertung. Die Bedrohung entsteht allein aus dem letzten konkreten Gegenstand.
 
-**Meldung:** *Bundesverfassungsgericht kippt Teile des Haushalts. Milliardenlücke im Etat.*
+**Meldung:** _Bundesverfassungsgericht kippt Teile des Haushalts. Milliardenlücke im Etat._
 
 ```text
 In Karlsruhe fällt
