@@ -8,6 +8,10 @@
     "chatgpt-test": "node --env-file=.env ./src/test/chatGPT.ts",
     "gemini-test": "node --env-file=.env ./src/test/gemini.ts",
     "ai-test": "npm run chatgpt-test && npm run gemini-test",
+    "lint": "oxlint",
+    "lint:fix": "oxlint --fix",
+    "fmt": "oxfmt",
+    "fmt:check": "oxfmt --check",
     "check": "tsc"
   },
   "dependencies": {
@@ -20,6 +24,9 @@
   },
   "devDependencies": {
     "@types/node": "^26.6.5",
+    "oxfmt": "^0.72.0",
+    "oxlint": "^1.87.0",
+    "oxlint-tsgolint": "^7.0.2004",
     "typescript": "^7.0"
   }
 }
