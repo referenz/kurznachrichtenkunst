@@ -3,5 +3,13 @@
   "options": {
     "typeAware": true,
     "typeCheck": true
-  }
+  },
+  "overrides": [
+    {
+      "files": ["src/test/**/*.test.ts"],
+      "rules": {
+        "typescript/no-floating-promises": "off"
+      }
+    }
+  ]
 }

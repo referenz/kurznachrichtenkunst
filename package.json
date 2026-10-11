@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "start": "node --env-file=.env ./src/main.ts",
+    "test": "node --test --experimental-test-module-mocks --no-warnings \"src/test/**/*.test.ts\"",
     "feeds-test": "node --env-file=.env ./src/test/feeds.ts",
     "chatgpt-test": "node --env-file=.env ./src/test/chatGPT.ts",
     "gemini-test": "node --env-file=.env ./src/test/gemini.ts",
