@@ -7,7 +7,7 @@
     "feeds-test": "node --env-file=.env ./src/test/feeds.ts",
     "chatgpt-test": "node --env-file=.env ./src/test/chatGPT.ts",
     "gemini-test": "node --env-file=.env ./src/test/gemini.ts",
-    "ai-test": "npm run chatgpt-test && npm run gemini-test",
+    "ai-test": "pnpm chatgpt-test && pnpm gemini-test",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
     "fmt": "oxfmt",
@@ -28,5 +28,14 @@
     "oxlint": "^1.87.0",
     "oxlint-tsgolint": "^7.0.2004",
     "typescript": "^7.0"
+  },
+  "devEngines": {
+    "packageManager": {
+      "name": "pnpm",
+      "version": "^12.0.0"
+    }
+  },
+  "engines": {
+    "node": ">=24"
   }
 }
